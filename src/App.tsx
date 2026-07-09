@@ -96,6 +96,35 @@ const FAQS: [string, string][] = [
   ],
 ];
 
+const MARCAS = [
+  "Rennova",
+  "Evofill",
+  "Sofiderm",
+  "Radiesse",
+  "Sculptra",
+  "Ellansé",
+  "Allergan",
+  "Galderma",
+];
+
+function Marquee() {
+  const row = [...MARCAS, ...MARCAS];
+  return (
+    <section className="marquee-band">
+      <p className="marquee-label">
+        Trabalhamos com as principais marcas do mercado
+      </p>
+      <div className="marquee">
+        <div className="marquee-track">
+          {row.map((m, i) => (
+            <span key={i}>{m}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Faq({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -224,6 +253,8 @@ export default function App() {
         </div>
       </section>
 
+      <Marquee />
+
       {/* HARMONIZAÇÃO GLÚTEA */}
       <section className="band ink" id="gluteo">
         <div className="wrap">
@@ -317,12 +348,10 @@ export default function App() {
                 <span className="badge">Recomendada</span>
                 <div className="tier">Presencial</div>
                 <h3>Avaliação Presencial</h3>
-                <div className="p">
-                  R$100 <small>— abatido no procedimento</small>
-                </div>
+                <div className="p">Na clínica</div>
                 <p className="d">
-                  Avaliação completa em uma das unidades. O valor é 100% abatido
-                  caso você inicie o seu protocolo.
+                  Avaliação completa e presencial em uma das unidades, com toda a
+                  atenção da nossa equipe.
                 </p>
               </motion.div>
             </Reveal>
