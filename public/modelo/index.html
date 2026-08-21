@@ -104,13 +104,11 @@ a{color:inherit}
   scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;
   -webkit-overflow-scrolling:touch}
 .car-track::-webkit-scrollbar{display:none}
-.car-slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;min-width:0}
-.ba{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--ivory);box-shadow:var(--shadow)}
-.ba img{width:100%;height:auto;display:block}
-.ba .cap{display:flex;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted);border-top:1px solid var(--line)}
-.ba .cap span{flex:1;text-align:center;padding:11px 4px}
-.ba .cap span+span{border-left:1px solid var(--line)}
+.car-slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;min-width:0;
+  display:flex;align-items:center;justify-content:center}
+.ba{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--ivory);
+  box-shadow:var(--shadow);max-width:100%;line-height:0}
+.ba img{max-height:64vh;width:auto;max-width:100%;height:auto;display:block}
 
 .car-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
   width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
@@ -292,25 +290,16 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
         <div class="car-slide">
           <figure class="ba" style="margin:0">
             <img src="antes-depois-1.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
-            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
           </figure>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
-            <img src="antes-depois-2.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
-            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+            <img src="antes-depois-2.jpg" loading="lazy" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
-            <img src="antes-depois-3.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
-            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
-          </figure>
-        </div>
-        <div class="car-slide">
-          <figure class="ba" style="margin:0">
-            <img src="antes-depois-4.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
-            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+            <img src="antes-depois-3.jpg" loading="lazy" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
         </div>
       </div>
