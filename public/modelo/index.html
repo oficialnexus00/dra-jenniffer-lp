@@ -99,8 +99,7 @@ a{color:inherit}
 .troca .t{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 
 /* Antes e depois */
-.ba-grid{display:grid;gap:18px;margin-top:26px}
-@media(min-width:640px){.ba-grid{grid-template-columns:1fr 1fr}}
+.ba-grid{display:grid;gap:18px;margin-top:26px;max-width:520px;margin-left:auto;margin-right:auto}
 .ba{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--ivory);box-shadow:var(--shadow)}
 .ba img{width:100%;height:auto}
 .ba .cap{display:flex;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
@@ -228,11 +227,7 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
 
     <div class="ba-grid" id="baGrid">
       <figure class="ba" style="margin:0">
-        <img src="antes-depois-1.jpg" alt="Antes e depois de paciente da clínica" loading="lazy" onerror="this.closest('figure').style.display='none'" />
-        <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
-      </figure>
-      <figure class="ba" style="margin:0">
-        <img src="antes-depois-2.jpg" alt="Antes e depois de paciente da clínica" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+        <img src="antes-depois.jpg" alt="Antes e depois de aplicação de toxina botulínica no terço superior" loading="lazy" width="1024" height="1273" onerror="this.closest('figure').style.display='none'" />
         <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
       </figure>
     </div>
