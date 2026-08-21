@@ -98,15 +98,81 @@ a{color:inherit}
 .troca{background:var(--ivory);border:1px solid var(--line);border-radius:5px;padding:24px;margin-top:24px}
 .troca .t{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 
-/* Antes e depois */
-.ba-grid{display:grid;gap:18px;margin-top:26px;max-width:520px;margin-left:auto;margin-right:auto}
+/* Antes e depois — carrossel */
+.car{position:relative;margin-top:26px;max-width:520px;margin-left:auto;margin-right:auto}
+.car-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-overflow-scrolling:touch}
+.car-track::-webkit-scrollbar{display:none}
+.car-slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;min-width:0}
 .ba{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--ivory);box-shadow:var(--shadow)}
-.ba img{width:100%;height:auto}
+.ba img{width:100%;height:auto;display:block}
 .ba .cap{display:flex;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:var(--muted);border-top:1px solid var(--line)}
 .ba .cap span{flex:1;text-align:center;padding:11px 4px}
 .ba .cap span+span{border-left:1px solid var(--line)}
-.ba-note{color:var(--muted);font-size:13.5px;margin-top:18px;line-height:1.55}
+
+.car-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(246,241,232,.92);backdrop-filter:blur(6px);cursor:pointer;
+  display:none;align-items:center;justify-content:center;padding:0;transition:.22s}
+.car-nav:hover{border-color:var(--gold);background:var(--ivory)}
+.car-nav:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+.car-nav svg{width:18px;height:18px;stroke:var(--espresso);fill:none;stroke-width:2}
+.car-nav.prev{left:-14px}
+.car-nav.next{right:-14px}
+.car.multi .car-nav{display:flex}
+@media(max-width:700px){.car.multi .car-nav{display:none}}
+
+.car-dots{display:none;gap:8px;justify-content:center;margin-top:18px}
+.car.multi .car-dots{display:flex}
+.car-dot{width:8px;height:8px;border-radius:50%;background:var(--sand-2,rgba(36,28,22,.2));
+  border:none;padding:0;cursor:pointer;transition:.28s}
+.car-dot:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px}
+.car-dot.on{background:var(--gold-deep);width:24px;border-radius:100px}
+
+.car-hint{display:none;text-align:center;font-size:12.5px;color:var(--muted);
+  margin-top:12px;letter-spacing:.04em}
+.car.multi .car-hint{display:block}
+@media(min-width:701px){.car.multi .car-hint{display:none}}
+
+.ba-note{color:var(--muted);font-size:13.5px;margin-top:18px;line-height:1.55;text-align:center}
+
+@media(prefers-reduced-motion:reduce){
+  .car-track{scroll-behavior:auto}
+}
+
+/* FAQ */
+.faq{margin-top:26px;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none;cursor:pointer;padding:19px 0;
+  font-family:var(--serif);font-size:20px;color:var(--espresso);display:flex;
+  justify-content:space-between;align-items:center;gap:18px;line-height:1.25}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::marker{content:""}
+.qa summary:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:3px}
+.qa .pm{width:20px;height:20px;flex:none;position:relative}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;background:var(--gold-deep);transition:.3s}
+.qa .pm::before{top:9px;left:1px;width:18px;height:1.5px}
+.qa .pm::after{top:1px;left:9px;width:1.5px;height:18px}
+.qa[open] .pm::after{transform:rotate(90deg);opacity:0}
+.qa .ans p{margin:0 0 20px;color:var(--espresso-soft);font-size:16px;max-width:60ch}
+@media(prefers-reduced-motion:no-preference){
+  .qa[open] .ans{animation:faq-in .28s ease}
+}
+@keyframes faq-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+
+/* CTA fixo no mobile */
+.cta-fix{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(246,241,232,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);
+  transform:translateY(120%);transition:transform .3s ease}
+.cta-fix.on{transform:translateY(0)}
+.cta-fix a{display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--espresso);color:var(--ivory);text-decoration:none;
+  font-size:16px;font-weight:600;padding:16px;border-radius:4px}
+.cta-fix a b{color:var(--rose);font-weight:600}
+@media(min-width:701px){.cta-fix{display:none}}
 
 /* Formulário */
 .form-band{background:var(--espresso);color:var(--ivory);padding:48px 0 56px}
@@ -208,14 +274,6 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
       </div>
     </div>
 
-    <div class="filtro">
-      <div class="ft">Antes de preencher, três coisas</div>
-      <ol>
-        <li><span><b>Não é gratuito.</b> É uma condição especial, não um sorteio nem um brinde. O valor é R$ 499 à vista no Pix ou R$ 599 no cartão.</span></li>
-        <li><span><b>As vagas são limitadas e eu seleciono os casos.</b> Preencher o formulário é uma candidatura — não garante a vaga.</span></li>
-        <li><span><b>Você precisa autorizar as imagens</b> do antes e depois e comparecer ao retorno de 15 dias. É isso que justifica o valor.</span></li>
-      </ol>
-    </div>
   </div>
 </section>
 
@@ -225,11 +283,44 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     <h2>Antes e depois de pacientes da clínica</h2>
     <p class="sub">Registros feitos aqui, com autorização. É exatamente esse tipo de material que a vaga de paciente modelo ajuda a construir.</p>
 
-    <div class="ba-grid" id="baGrid">
-      <figure class="ba" style="margin:0">
-        <img src="antes-depois.jpg" alt="Antes e depois de aplicação de toxina botulínica no terço superior" loading="lazy" width="1024" height="1273" onerror="this.closest('figure').style.display='none'" />
-        <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
-      </figure>
+    <div class="car" id="car">
+      <button class="car-nav prev" id="carPrev" type="button" aria-label="Caso anterior">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="car-track" id="carTrack">
+        <div class="car-slide">
+          <figure class="ba" style="margin:0">
+            <img src="antes-depois-1.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+          </figure>
+        </div>
+        <div class="car-slide">
+          <figure class="ba" style="margin:0">
+            <img src="antes-depois-2.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+          </figure>
+        </div>
+        <div class="car-slide">
+          <figure class="ba" style="margin:0">
+            <img src="antes-depois-3.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+          </figure>
+        </div>
+        <div class="car-slide">
+          <figure class="ba" style="margin:0">
+            <img src="antes-depois-4.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <figcaption class="cap"><span>Antes</span><span>Depois</span></figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <button class="car-nav next" id="carNext" type="button" aria-label="Próximo caso">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="car-dots" id="carDots" role="tablist" aria-label="Casos"></div>
+      <p class="car-hint">← deslize para ver outros casos →</p>
     </div>
 
     <p class="ba-note">Imagens publicadas com autorização das pacientes. Resultados podem variar de pessoa para pessoa — cada protocolo é definido em avaliação individual.</p>
@@ -277,6 +368,49 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
       <span class="cidade">Balneário Camboriú</span>
       <span class="cidade">Itajaí</span>
       <span class="cidade">Itapema</span>
+    </div>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="wrap">
+    <span class="eyebrow">Dúvidas frequentes</span>
+    <h2>O que as pacientes mais perguntam</h2>
+
+    <div class="faq">
+      <details class="qa">
+        <summary>Dói?<span class="pm"></span></summary>
+        <div class="ans"><p>Usamos agulha fina e anestésico tópico antes de começar. A maioria descreve como um beliscão rápido, não como dor. O procedimento leva cerca de 15 minutos.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Quanto tempo dura o resultado?<span class="pm"></span></summary>
+        <div class="ans"><p>Em média de 4 a 6 meses. Varia conforme o metabolismo e a força da musculatura de cada pessoa. O efeito começa a aparecer entre o 3º e o 7º dia e se assenta por volta do 15º.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Vou ficar com o rosto travado?<span class="pm"></span></summary>
+        <div class="ans"><p>Não. As 50 UI são distribuídas conforme a sua musculatura, não em dose padrão igual para todo mundo. O objetivo é suavizar a marca, mantendo sua expressão natural.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Posso parcelar?<span class="pm"></span></summary>
+        <div class="ans"><p>Sim. No cartão o valor é R$ 599, parcelado. À vista no Pix, R$ 499.</p></div>
+      </details>
+      <details class="qa">
+        <summary>Preciso vir antes para uma avaliação?<span class="pm"></span></summary>
+        <div class="ans"><p>Não. A avaliação e a aplicação acontecem no mesmo dia — você vem uma vez só. A Dra. avalia sua musculatura, define a distribuição e aplica na sequência.</p></div>
+      </details>
+      <details class="qa">
+        <summary>É o mesmo Botox que fazem por R$ 400 por aí?<span class="pm"></span></summary>
+        <div class="ans"><p>Não. Trabalhamos com Dysport original e a caixa lacrada é aberta na sua frente, sem diluição. Toxina diluída custa menos porque rende mais aplicações — e dura menos no seu rosto.</p></div>
+      </details>
+    </div>
+
+    <div class="filtro">
+      <div class="ft">Antes de preencher, três coisas</div>
+      <ol>
+        <li><span><b>Não é gratuito.</b> É uma condição especial, não um sorteio nem um brinde. O valor é R$ 499 à vista no Pix ou R$ 599 no cartão.</span></li>
+        <li><span><b>As vagas são limitadas e eu seleciono os casos.</b> Preencher o formulário é uma candidatura — não garante a vaga.</span></li>
+        <li><span><b>Você precisa autorizar as imagens</b> do antes e depois e comparecer ao retorno de 15 dias. É isso que justifica o valor.</span></li>
+      </ol>
     </div>
   </div>
 </section>
@@ -370,6 +504,10 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
   </div>
 </section>
 
+<div class="cta-fix" id="ctaFix">
+  <a href="#form">Quero me candidatar · <b>R$ 499</b></a>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="fr">
@@ -400,6 +538,152 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
 
   var pill = document.getElementById("pillVagas");
   if (pill) pill.textContent = CONFIG.vagas + " vagas · " + CONFIG.prazo;
+
+  /* ---------- Carrossel de antes e depois ---------- */
+  (function () {
+    var car = document.getElementById("car");
+    var track = document.getElementById("carTrack");
+    var dotsEl = document.getElementById("carDots");
+    if (!car || !track) return;
+
+    var timer = null;
+    var interagiu = false;
+    var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function slides() {
+      return Array.prototype.slice.call(track.querySelectorAll(".car-slide"));
+    }
+
+    function montar() {
+      var s = slides();
+      dotsEl.innerHTML = "";
+
+      // Um caso só (ou nenhum): sem setas, sem bolinhas, sem autoplay
+      if (s.length < 2) {
+        car.classList.remove("multi");
+        parar();
+        if (s.length === 0) {
+          var sec = car.closest("section");
+          if (sec) sec.style.display = "none";
+        }
+        return;
+      }
+
+      car.classList.add("multi");
+      s.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "car-dot" + (i === 0 ? " on" : "");
+        b.setAttribute("aria-label", "Caso " + (i + 1) + " de " + s.length);
+        b.addEventListener("click", function () {
+          interagiu = true; parar();
+          irPara(i);
+        });
+        dotsEl.appendChild(b);
+      });
+    }
+
+    function indiceAtual() {
+      var s = slides();
+      if (!s.length) return 0;
+      var meio = track.scrollLeft + track.clientWidth / 2;
+      var melhor = 0, menor = Infinity;
+      s.forEach(function (el, i) {
+        var centro = el.offsetLeft + el.offsetWidth / 2;
+        var d = Math.abs(centro - meio);
+        if (d < menor) { menor = d; melhor = i; }
+      });
+      return melhor;
+    }
+
+    function irPara(i) {
+      var s = slides();
+      if (!s[i]) return;
+      track.scrollTo({ left: s[i].offsetLeft, behavior: reduz ? "auto" : "smooth" });
+    }
+
+    function sincronizar() {
+      var atual = indiceAtual();
+      Array.prototype.forEach.call(dotsEl.children, function (d, i) {
+        d.classList.toggle("on", i === atual);
+      });
+    }
+
+    function avancar() {
+      var s = slides();
+      if (s.length < 2) return;
+      irPara((indiceAtual() + 1) % s.length);
+    }
+
+    function tocar() {
+      if (reduz || interagiu || timer) return;
+      timer = setInterval(avancar, 5000);
+    }
+    function parar() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    var raf = null;
+    track.addEventListener("scroll", function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { raf = null; sincronizar(); });
+    }, { passive: true });
+
+    ["pointerdown", "touchstart", "wheel", "keydown"].forEach(function (ev) {
+      track.addEventListener(ev, function () { interagiu = true; parar(); }, { passive: true });
+    });
+
+    document.getElementById("carPrev").addEventListener("click", function () {
+      interagiu = true; parar();
+      irPara(Math.max(0, indiceAtual() - 1));
+    });
+    document.getElementById("carNext").addEventListener("click", function () {
+      interagiu = true; parar();
+      irPara(Math.min(slides().length - 1, indiceAtual() + 1));
+    });
+
+    // Monta já, sem depender do carregamento das imagens. Slides de imagens
+    // que não existem se removem sozinhos (onerror no HTML) e o observer
+    // remonta as bolinhas quando isso acontece.
+    montar();
+
+    new MutationObserver(function () {
+      var atual = indiceAtual();
+      montar();
+      var d = dotsEl.children[atual];
+      if (d) {
+        Array.prototype.forEach.call(dotsEl.children, function (x, i) {
+          x.classList.toggle("on", i === atual);
+        });
+      }
+    }).observe(track, { childList: true });
+
+    // Autoplay só depois que as imagens resolverem, pra não pular slide
+    // que ainda vai sumir.
+    var imgs = Array.prototype.slice.call(track.querySelectorAll("img"));
+    var pendentes = imgs.length;
+    function resolveu() { if (--pendentes <= 0) tocar(); }
+    if (!pendentes) tocar();
+    imgs.forEach(function (img) {
+      if (img.complete) setTimeout(resolveu, 0);
+      else {
+        img.addEventListener("load", resolveu, { once: true });
+        img.addEventListener("error", resolveu, { once: true });
+      }
+    });
+  })();
+
+  /* ---------- CTA fixo no mobile ---------- */
+  (function () {
+    var cta = document.getElementById("ctaFix");
+    var form = document.getElementById("form");
+    if (!cta || !form) return;
+    window.addEventListener("scroll", function () {
+      var passouDoTopo = window.scrollY > 420;
+      var chegouNoForm = form.getBoundingClientRect().top < window.innerHeight;
+      cta.classList.toggle("on", passouDoTopo && !chegouNoForm);
+    }, { passive: true });
+  })();
 
   var form = document.getElementById("f");
   var btn = document.getElementById("btn");
