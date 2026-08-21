@@ -195,6 +195,14 @@ form{margin-top:30px;display:grid;gap:20px}
 .field input:focus,.field select:focus,.field textarea:focus{
   outline:none;border-color:var(--rose);background:rgba(246,241,232,.11)}
 
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{border:1px solid rgba(246,241,232,.25);background:rgba(246,241,232,.06);
+  color:var(--ivory);border-radius:100px;padding:13px 19px;font-size:15.5px;
+  font-family:var(--sans);cursor:pointer;transition:.2s;line-height:1.2}
+.chip:hover{border-color:rgba(217,169,160,.6)}
+.chip:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.chip.on{border-color:var(--rose);background:rgba(217,169,160,.18);color:#fff;font-weight:600}
+
 .radio-group{display:grid;gap:10px}
 .radio{display:flex;align-items:flex-start;gap:12px;cursor:pointer;
   border:1px solid rgba(246,241,232,.22);border-radius:4px;padding:15px 14px;transition:.2s}
@@ -412,55 +420,27 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
 
     <form id="f" novalidate>
       <div class="field">
-        <label for="nome">Seu nome <span class="req">*</span></label>
-        <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Nome e sobrenome" required />
+        <label>O que mais te incomoda hoje? <span class="req">*</span></label>
+        <div class="chips" id="chipsQueixa">
+          <button type="button" class="chip" data-v="Testa marcada">Testa marcada</button>
+          <button type="button" class="chip" data-v="Vinco entre as sobrancelhas">Vinco entre as sobrancelhas</button>
+          <button type="button" class="chip" data-v="Pés de galinha">Pés de galinha</button>
+          <button type="button" class="chip" data-v="Olhar cansado">Olhar cansado</button>
+          <button type="button" class="chip" data-v="Tudo isso">Tudo isso</button>
+        </div>
+        <span class="hint">Pode marcar mais de um.</span>
+        <span class="err" id="errQueixa">Escolha pelo menos uma.</span>
       </div>
 
       <div class="field">
-        <label for="zap">WhatsApp <span class="req">*</span></label>
-        <input type="tel" id="zap" name="zap" autocomplete="tel" inputmode="numeric" placeholder="(47) 90000-0000" required />
-        <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
-      </div>
-
-      <div class="field">
-        <label for="idade">Idade <span class="req">*</span></label>
-        <input type="number" id="idade" name="idade" inputmode="numeric" min="18" max="99" placeholder="Ex.: 34" required />
-        <span class="err" id="errIdade">Os procedimentos são realizados a partir dos 18 anos.</span>
-      </div>
-
-      <div class="field">
-        <label for="cidade">Onde você mora <span class="req">*</span></label>
-        <select id="cidade" name="cidade" required>
-          <option value="">Selecione</option>
-          <option>Balneário Camboriú</option>
-          <option>Itajaí</option>
-          <option>Itapema</option>
-          <option>Outra cidade</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="exp">Você já fez Botox alguma vez? <span class="req">*</span></label>
-        <select id="exp" name="exp" required>
-          <option value="">Selecione</option>
-          <option>Nunca fiz</option>
-          <option>Já fiz uma vez</option>
-          <option>Faço com regularidade</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="incomoda">O que mais te incomoda hoje? <span class="req">*</span></label>
-        <textarea id="incomoda" name="incomoda" placeholder="Pode escrever do seu jeito — é isso que eu olho primeiro para montar seu protocolo." required></textarea>
-      </div>
-
-      <div class="field">
-        <label for="labial">Quer incluir o preenchimento labial na mesma sessão? <span class="req">*</span></label>
-        <select id="labial" name="labial" required>
-          <option value="">Selecione</option>
-          <option>Sim, quero saber a condição dos dois</option>
-          <option>Não, só o Botox por enquanto</option>
-        </select>
+        <label>Onde você mora <span class="req">*</span></label>
+        <div class="chips" id="chipsCidade">
+          <button type="button" class="chip" data-v="Balneário Camboriú">Balneário Camboriú</button>
+          <button type="button" class="chip" data-v="Itajaí">Itajaí</button>
+          <button type="button" class="chip" data-v="Itapema">Itapema</button>
+          <button type="button" class="chip" data-v="Outra cidade">Outra</button>
+        </div>
+        <span class="err" id="errCidade">Selecione sua cidade.</span>
       </div>
 
       <div class="field">
@@ -477,11 +457,22 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
             <input type="radio" name="imagem" value="nao" />
             <span>
               <span class="rl">Prefiro não aparecer</span>
-              <span class="rd">Sem problema — nesse caso a Aurora te passa o valor normal da aplicação.</span>
+              <span class="rd">Sem problema — a Aurora te passa o valor normal da aplicação.</span>
             </span>
           </label>
         </div>
         <span class="err" id="errImg">Escolha uma das duas opções.</span>
+      </div>
+
+      <div class="field">
+        <label for="nome">Como você quer ser chamada? <span class="req">*</span></label>
+        <input type="text" id="nome" name="nome" autocomplete="given-name" placeholder="Seu primeiro nome" required />
+      </div>
+
+      <div class="field">
+        <label for="zap">Seu WhatsApp <span class="req">*</span></label>
+        <input type="tel" id="zap" name="zap" autocomplete="tel" inputmode="numeric" placeholder="(47) 90000-0000" required />
+        <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
       </div>
 
       <button type="submit" class="submit" id="btn">
@@ -688,6 +679,29 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     });
   });
 
+  // Chips: queixa aceita várias, cidade aceita uma
+  function ligarChips(id, multi, erroId) {
+    var box = document.getElementById(id);
+    box.addEventListener("click", function (e) {
+      var c = e.target.closest(".chip");
+      if (!c) return;
+      if (multi) c.classList.toggle("on");
+      else {
+        Array.prototype.forEach.call(box.children, function (x) { x.classList.remove("on"); });
+        c.classList.add("on");
+      }
+      show(erroId, false);
+    });
+  }
+  ligarChips("chipsQueixa", true, "errQueixa");
+  ligarChips("chipsCidade", false, "errCidade");
+
+  function chipsEscolhidos(id) {
+    return Array.prototype.slice.call(
+      document.getElementById(id).querySelectorAll(".chip.on")
+    ).map(function (c) { return c.dataset.v; });
+  }
+
   zap.addEventListener("input", function () {
     var d = zap.value.replace(/\D/g, "").slice(0, 11);
     if (d.length > 6) zap.value = "(" + d.slice(0, 2) + ") " + d.slice(2, d.length - 4) + "-" + d.slice(-4);
@@ -709,23 +723,17 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    var queixa = chipsEscolhidos("chipsQueixa");
+    var cidade = chipsEscolhidos("chipsCidade")[0];
+    var imgEl = form.querySelector('input[name="imagem"]:checked');
     var nome = document.getElementById("nome").value.trim();
     var tel = zap.value.replace(/\D/g, "");
-    var idade = document.getElementById("idade").value.trim();
-    var cidade = document.getElementById("cidade").value;
-    var exp = document.getElementById("exp").value;
-    var incomoda = document.getElementById("incomoda").value.trim();
-    var labial = document.getElementById("labial").value;
-    var imgEl = form.querySelector('input[name="imagem"]:checked');
 
+    if (!queixa.length) { show("errQueixa", true); return firstInvalid(document.getElementById("chipsQueixa")); }
+    if (!cidade) { show("errCidade", true); return firstInvalid(document.getElementById("chipsCidade")); }
+    if (!imgEl) { show("errImg", true); return firstInvalid(document.getElementById("radSim")); }
     if (!nome) return firstInvalid(document.getElementById("nome"));
     if (tel.length < 10) { show("errZap", true); return firstInvalid(zap); }
-    if (!idade || Number(idade) < 18) { show("errIdade", true); return firstInvalid(document.getElementById("idade")); }
-    if (!cidade) return firstInvalid(document.getElementById("cidade"));
-    if (!exp) return firstInvalid(document.getElementById("exp"));
-    if (!incomoda) return firstInvalid(document.getElementById("incomoda"));
-    if (!labial) return firstInvalid(document.getElementById("labial"));
-    if (!imgEl) { show("errImg", true); return firstInvalid(document.getElementById("radSim")); }
 
     var autoriza = imgEl.value === "sim";
 
@@ -735,11 +743,8 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
         : "Oi! Enviei meu formulário e prefiro *não aparecer* nas redes 💛",
       "",
       "*Nome:* " + nome,
-      "*Idade:* " + idade,
       "*Cidade:* " + cidade,
-      "*Já fiz Botox:* " + exp,
-      "*O que me incomoda:* " + incomoda,
-      "*Preenchimento labial:* " + labial,
+      "*O que me incomoda:* " + queixa.join(", "),
       "",
       autoriza
         ? "*Autorizo* foto e vídeo do antes e depois. (" + CONFIG.precoPix + " no Pix / " + CONFIG.precoCartao + " no cartão)"
@@ -751,8 +756,7 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     if (CONFIG.webhook) {
       try {
         var payload = JSON.stringify({
-          nome: nome, whatsapp: tel, idade: idade, cidade: cidade,
-          experiencia: exp, incomodo: incomoda, quer_labial: labial,
+          nome: nome, whatsapp: tel, cidade: cidade, queixa: queixa,
           autoriza_imagem: autoriza, origem: location.search || "direto"
         });
         if (navigator.sendBeacon) {
