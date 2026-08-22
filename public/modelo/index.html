@@ -68,11 +68,9 @@ a{color:inherit}
 .hero-foto img{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 
 @media(max-width:900px){
-  .hero{padding-bottom:0}
-  .hero-foto{position:relative;width:112%;margin-left:-6%;height:360px;order:3;
-    -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent);
-    mask-image:linear-gradient(to bottom,#000 62%,transparent)}
-  .hero-grid{display:flex;flex-direction:column}
+  /* sem a máscara lateral a foto vira um bloco solto embaixo do preço;
+     no celular ela aparece só no bloco do profissional */
+  .hero-foto{display:none}
   .hero-copy{max-width:100%}
 }
 .hero h1{font-size:clamp(34px,8vw,52px);line-height:1.04;margin-top:18px;letter-spacing:-.01em}
@@ -338,7 +336,7 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     <div class="hero-copy">
     <span class="eyebrow">Seleção de Agosto</span>
     <h1>Estou selecionando <em>pacientes modelo</em> para Botox Dysport</h1>
-    <p class="lead">Estou montando meu portfólio de resultados. Por isso, algumas vagas deste mês saem por um valor que não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
+    <p class="lead">Algumas vagas deste mês saem por um valor que eu não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
 
     <div class="price-card">
       <div class="itens">Botox Dysport</div>
@@ -356,8 +354,8 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     </div>
     </div>
 
-    <figure class="hero-foto" style="background-image:url('dra-hero.webp')" role="img" aria-label="Dra. Jenniffer Miotto">
-      <img src="dra-hero.webp" alt="" width="720" height="900" aria-hidden="true" />
+    <figure class="hero-foto" style="background-image:url('dra.webp')" role="img" aria-label="Dra. Jenniffer Miotto">
+      <img src="dra.webp" alt="" width="760" height="949" aria-hidden="true" />
     </figure>
   </div>
 </section>
@@ -419,10 +417,6 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
       </li>
       <li>
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-        <span><b>Sem diluição.</b> Toxina diluída custa menos e dura menos — não é o que eu faço aqui.</span>
-      </li>
-      <li>
-        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
         <span><b>50 UI no terço superior completo:</b> testa, glabela e pés de galinha, distribuídas conforme a sua musculatura — não é dose de tabela igual para todo mundo.</span>
       </li>
       <li>
@@ -434,30 +428,6 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
         <span><b>Retorno de avaliação em 15 dias</b>, já incluso no valor.</span>
       </li>
     </ul>
-
-    <div class="troca">
-      <div class="t">O que eu preciso de você</div>
-      <ul class="list" style="margin-top:0">
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Autorizar o uso das fotos e vídeos do seu antes e depois nas redes da clínica.</span></li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>Comparecer ao retorno de 15 dias, quando registramos o resultado já assentado.</span></li>
-      </ul>
-    </div>
-
-    <div class="quem">
-      <img src="dra.webp" alt="Dra. Jenniffer Miotto, biomédica esteta" width="760" height="949" loading="lazy" />
-      <div class="quem-txt">
-        <span class="quem-kicker">Quem vai te atender</span>
-        <h3>Dra. Jenniffer Miotto</h3>
-        <p>Biomédica esteta. Sou eu que avalio e aplico em você — não tem equipe, não tem revezamento. É por isso que as vagas com essa condição são limitadas: eu atendo uma paciente por vez, com calma.</p>
-        <span class="crm-tag">Registro profissional · <b>CRBM 875/PR</b></span>
-      </div>
-    </div>
-
-    <div class="cidades">
-      <span class="cidade">Balneário Camboriú</span>
-      <span class="cidade">Itajaí</span>
-      <span class="cidade">Itapema</span>
-    </div>
   </div>
 </section>
 
