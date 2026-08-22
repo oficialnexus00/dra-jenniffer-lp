@@ -321,6 +321,20 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
   .vagas-pill{font-size:10.5px;padding:5px 10px}
 }
 </style>
+
+<!-- Meta Pixel — PIXEL JENNIFFER -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1032740982904115');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt="" /></noscript>
+<!-- /Meta Pixel -->
 </head>
 <body>
 
@@ -581,6 +595,24 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
   var pill = document.getElementById("pillVagas");
   if (pill) pill.textContent = CONFIG.vagas + " vagas · " + CONFIG.prazo;
 
+  /* ---------- Pixel: nunca pode quebrar a página ---------- */
+  function px(evento, dados) {
+    try { if (window.fbq) window.fbq("track", evento, dados || {}); } catch (e) {}
+  }
+
+  /* ViewContent = leu a prova e chegou no formulário */
+  (function () {
+    var alvo = document.getElementById("form");
+    if (!alvo || !window.IntersectionObserver) return;
+    var ob = new IntersectionObserver(function (ents) {
+      if (ents[0].isIntersecting) {
+        ob.disconnect();
+        px("ViewContent", { content_name: "Paciente Modelo — Botox" });
+      }
+    }, { threshold: 0.35 });
+    ob.observe(alvo);
+  })();
+
   /* ---------- Carrossel de antes e depois ---------- */
   (function () {
     var car = document.getElementById("car");
@@ -831,7 +863,22 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
 
     btn.disabled = true;
     btnTxt.textContent = "Abrindo o WhatsApp…";
-    window.location.href = url;
+
+    /* Lead para o Meta. Sem queixa, sem nome, sem telefone — só o que dá pra
+       otimizar campanha. O pixel é assíncrono, então damos 250ms de folga para
+       o beacon sair antes de trocar de página; se algo falhar, vai mesmo assim. */
+    px("Lead", {
+      content_name: "Paciente Modelo — Botox",
+      content_category: autoriza ? "autoriza-imagem" : "valor-normal"
+    });
+
+    var foi = false;
+    function irParaWhatsApp() {
+      if (foi) return;
+      foi = true;
+      window.location.href = url;
+    }
+    setTimeout(irParaWhatsApp, 250);
   });
 })();
 </script>
