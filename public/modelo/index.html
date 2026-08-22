@@ -107,6 +107,12 @@ a{color:inherit}
 .filtro b{font-weight:600}
 
 /* Marquee de marcas */
+.car-slide{display:flex;flex-direction:column}
+.car-cap{margin-top:10px;text-align:center;font-size:12px;letter-spacing:.08em;
+text-transform:uppercase;color:var(--muted);font-weight:600}
+.form-scarcity{margin:0 0 14px;padding:11px 14px;border:1px solid rgba(198,160,94,.42);
+border-radius:10px;background:rgba(198,160,94,.09);font-size:13.5px;color:#e8ded0;text-align:center}
+.form-scarcity b{color:#d9b978}
 .marquee-band{background:var(--sand);border-top:1px solid var(--line-soft);
   border-bottom:1px solid var(--line-soft);padding:26px 0}
 .marquee-label{text-align:center;margin:0 0 16px;font-size:10.5px;font-weight:600;
@@ -397,10 +403,6 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
   </div>
 </section>
 
-<section class="marquee-band">
-  <p class="marquee-label">Trabalhamos com as principais marcas do mercado</p>
-  <div class="marquee"><div class="marquee-track"><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span></div></div>
-</section>
 
 <section class="band alt">
   <div class="wrap">
@@ -418,17 +420,30 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
           <figure class="ba" style="margin:0">
             <img src="antes-depois-1.webp" width="1024" height="1280" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-1.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
+              <div class="car-cap">Botox Dysport — terço superior</div>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
             <img src="antes-depois-2.webp" width="900" height="1600" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-2.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
+              <div class="car-cap">Botox Dysport — terço superior</div>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
             <img src="antes-depois-3.webp" width="900" height="1600" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-3.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
+              <div class="car-cap">Botox Dysport — terço superior</div>
         </div>
+          <div class="car-slide">
+            <figure class="ba" style="margin:0">
+              <img src="antes-depois-4.webp" width="900" height="1600" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-4.jpg'}" alt="Antes e depois de paciente — preenchimento facial no terço médio e bigode chinês" /></figure>
+              <div class="car-cap">Preenchimento — bigode chinês e terço médio</div>
+          </div>
+          <div class="car-slide">
+            <figure class="ba" style="margin:0">
+              <img src="antes-depois-5.webp" width="720" height="1280" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-5.jpg'}" alt="Antes e depois de paciente — preenchimento labial" /></figure>
+              <div class="car-cap">Preenchimento labial</div>
+          </div>
       </div>
 
       <button class="car-nav next" id="carNext" type="button" aria-label="Próximo caso">
@@ -439,10 +454,14 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       <p class="car-hint">← deslize para ver outros casos →</p>
     </div>
 
-    <p class="ba-note">Imagens publicadas com autorização das pacientes. Resultados podem variar de pessoa para pessoa — cada protocolo é definido em avaliação individual.</p>
+    <p class="ba-note">Imagens publicadas com autorização das pacientes. Resultados podem variar de pessoa para pessoa — a Dra. avalia o seu caso na hora da aplicação.</p>
   </div>
 </section>
 
+<section class="marquee-band">
+  <p class="marquee-label">Trabalhamos com as principais marcas do mercado</p>
+  <div class="marquee"><div class="marquee-track"><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span></div></div>
+</section>
 <section class="band">
   <div class="wrap">
     <span class="eyebrow">Por que aqui</span>
@@ -473,7 +492,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
     <div class="filtro">
       <div class="ft">Antes de preencher, três coisas</div>
       <ol>
-        <li><span><b>Não é gratuito.</b> É uma condição especial, não um sorteio nem um brinde. O valor é R$ 499 à vista no Pix ou R$ 599 no cartão.</span></li>
+        <li><span><b>Não é gratuito.</b> É uma condição especial, não um sorteio nem um brinde. O Botox sai por R$ 499 à vista no Pix (R$ 599 no cartão) e os preenchimentos a partir de R$ 697.</span></li>
         <li><span><b>As vagas são limitadas e eu seleciono os casos.</b> Preencher o formulário é uma candidatura — não garante a vaga.</span></li>
         <li><span><b>Você precisa autorizar as imagens</b> do antes e depois e comparecer ao retorno de 15 dias. É isso que justifica o valor.</span></li>
       </ol>
@@ -522,7 +541,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
             <input type="radio" name="imagem" value="sim" required />
             <span>
               <span class="rl">Sim, autorizo</span>
-              <span class="rd">Concorro à vaga de paciente modelo — R$ 499 no Pix ou R$ 599 no cartão.</span>
+              <span class="rd">Concorro à vaga de paciente modelo, com o valor promocional do que eu escolhi acima.</span>
             </span>
           </label>
           <label class="radio" id="radNao">
@@ -546,6 +565,8 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
         <input type="tel" id="zap" name="zap" autocomplete="tel" inputmode="numeric" placeholder="(47) 90000-0000" required />
         <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
       </div>
+
+      <p class="form-scarcity">Restam <b>6 vagas</b> de paciente modelo nesta seleção. Eu escolho os casos — enviar não garante a vaga.</p>
 
       <p class="trust-line">Dysport original · caixa lacrada aberta na sua frente · CRBM 875/PR</p>
 
@@ -597,7 +618,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       <span>BC · Itajaí · Itapema</span>
     </div>
     <p class="legal">
-      Resultados podem variar de pessoa para pessoa. Todos os procedimentos são precedidos de avaliação individual,
+      Resultados podem variar de pessoa para pessoa. Todos os procedimentos são precedidos de avaliação individual, realizada no mesmo atendimento,
       e a indicação depende da análise da profissional. Vagas com valor promocional são limitadas e válidas por tempo determinado.
     </p>
   </div>
@@ -614,6 +635,16 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
     prazo: "setembro",
     precoPix: "R$ 499",
     precoCartao: "R$ 599",
+    // queixa -> procedimento e valor. Tem que bater com a tabela da Aurora no GPTMaker.
+    tabela: {
+      "Testa marcada":               { proc: "Botox Dysport (terço superior)", modelo: 499, cheio: 899 },
+      "Vinco entre as sobrancelhas": { proc: "Botox Dysport (terço superior)", modelo: 499, cheio: 899 },
+      "Pés de galinha":              { proc: "Botox Dysport (terço superior)", modelo: 499, cheio: 899 },
+      "Olhar cansado":               { proc: "Botox Dysport (terço superior)", modelo: 499, cheio: 899 },
+      "Olheira funda":               { proc: "Preenchimento de olheira",       modelo: 697, cheio: 697 },
+      "Bigode chinês":               { proc: "Preenchimento de bigode chinês", modelo: 697, cheio: 697 },
+      "Lábios finos":                { proc: "Preenchimento labial",           modelo: 750, cheio: 750 }
+    },
     webhook: ""                  // opcional: URL para gravar também em planilha/CRM
   };
   /* ========================================== */
@@ -857,6 +888,28 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 
     var autoriza = imgEl.value === "sim";
 
+    // Traduz as queixas nos procedimentos e soma. "Tudo isso" nao calcula:
+    // combo grande a Aurora fecha na conversa.
+    function precoLinha(queixas, aut) {
+      if (queixas.indexOf("Tudo isso") !== -1) {
+        return "Quero combinar mais de um \u2014 me passa o valor?";
+      }
+      var vistos = {}, itens = [], total = 0;
+      for (var i = 0; i < queixas.length; i++) {
+        var t = CONFIG.tabela[queixas[i]];
+        if (!t || vistos[t.proc]) continue;
+        vistos[t.proc] = 1;
+        var v = aut ? t.modelo : t.cheio;
+        itens.push(t.proc + " \u2014 R$ " + v.toLocaleString("pt-BR"));
+        total += v;
+      }
+      if (!itens.length) return null;
+      var txt = "*O que eu quero:* " + itens.join(" + ");
+      if (itens.length > 1) txt += "\n*Total:* R$ " + total.toLocaleString("pt-BR");
+      else if (aut && total === 499) txt += " no Pix (R$ 599 no cart\u00e3o)";
+      return txt;
+    }
+
     var linhas = [
       autoriza
         ? "Oi! Acabei de enviar minha candidatura para *paciente modelo* 💛"
@@ -867,9 +920,10 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       "*O que me incomoda:* " + queixa.join(", "),
       "",
       autoriza
-        ? "*Autorizo* foto e vídeo do antes e depois. (" + CONFIG.precoPix + " no Pix / " + CONFIG.precoCartao + " no cartão)"
-        : "*Não autorizo* foto e vídeo — quero saber o valor normal."
-    ];
+        ? "*Autorizo* foto e vídeo do antes e depois."
+        : "*Não autorizo* foto e vídeo — quero saber o valor normal.",
+      precoLinha(queixa, autoriza)
+    ].filter(function (l) { return l !== null; });
 
     var url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(linhas.join("\n"));
 
