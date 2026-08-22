@@ -179,26 +179,26 @@ a{color:inherit}
   .car-track{scroll-behavior:auto}
 }
 
-/* FAQ */
-.faq{margin-top:26px;border-top:1px solid var(--line)}
-.qa{border-bottom:1px solid var(--line)}
-.qa summary{list-style:none;cursor:pointer;padding:19px 0;
-  font-family:var(--serif);font-size:20px;color:var(--espresso);display:flex;
-  justify-content:space-between;align-items:center;gap:18px;line-height:1.25}
+
+/* Dúvidas — compacto, no fim da página */
+.faq-band{padding:26px 0 30px;border-top:1px solid var(--line-soft)}
+.faq-label{margin:0 0 4px;font-size:10.5px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--muted)}
+.faq{max-width:640px}
+.qa{border-bottom:1px solid var(--line-soft)}
+.qa summary{list-style:none;cursor:pointer;padding:11px 0;font-family:var(--sans);
+  font-size:15px;color:var(--espresso-soft);display:flex;justify-content:space-between;
+  align-items:center;gap:14px;line-height:1.35}
 .qa summary::-webkit-details-marker{display:none}
 .qa summary::marker{content:""}
-.qa summary:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:3px}
-.qa .pm{width:20px;height:20px;flex:none;position:relative}
-.qa .pm::before,.qa .pm::after{content:"";position:absolute;background:var(--gold-deep);transition:.3s}
-.qa .pm::before{top:9px;left:1px;width:18px;height:1.5px}
-.qa .pm::after{top:1px;left:9px;width:1.5px;height:18px}
+.qa summary:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px;border-radius:3px}
+.qa[open] summary{color:var(--espresso);font-weight:600}
+.qa .pm{width:14px;height:14px;flex:none;position:relative}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;background:var(--gold-deep);transition:.25s}
+.qa .pm::before{top:6px;left:0;width:14px;height:1.4px}
+.qa .pm::after{top:0;left:6px;width:1.4px;height:14px}
 .qa[open] .pm::after{transform:rotate(90deg);opacity:0}
-.qa .ans p{margin:0 0 20px;color:var(--espresso-soft);font-size:16px;max-width:60ch}
-@media(prefers-reduced-motion:no-preference){
-  .qa[open] .ans{animation:faq-in .28s ease}
-}
-@keyframes faq-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
-
+.qa .ans p{margin:0 0 13px;color:var(--muted);font-size:14.5px;line-height:1.55;max-width:58ch}
 
 /* CTA fixo no mobile */
 .cta-fix{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:12px 16px calc(12px + env(safe-area-inset-bottom));
@@ -413,7 +413,7 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     <ul class="list">
       <li>
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
-        <span><b>Dysport original, caixa lacrada.</b> Eu abro na sua frente, toda vez. Você vê o que está entrando no seu rosto.</span>
+        <span><b>Dysport original, caixa lacrada.</b> Eu abro na sua frente, toda vez. Não é o mesmo produto de quem cobra R$ 400 — nesse valor a toxina está diluída, e dura metade do tempo.</span>
       </li>
       <li>
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
@@ -518,39 +518,31 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
   </div>
 </section>
 
-<section class="band">
+<section class="faq-band">
   <div class="wrap">
-    <span class="eyebrow">Dúvidas frequentes</span>
-    <h2>O que as pacientes mais perguntam</h2>
-
+    <p class="faq-label">Dúvidas rápidas</p>
     <div class="faq">
       <details class="qa">
         <summary>Dói?<span class="pm"></span></summary>
-        <div class="ans"><p>Usamos agulha fina e anestésico tópico antes de começar. A maioria descreve como um beliscão rápido, não como dor. O procedimento leva cerca de 15 minutos.</p></div>
+        <div class="ans"><p>Agulha fina e anestésico tópico antes. A maioria descreve como um beliscão rápido. Leva cerca de 15 minutos.</p></div>
       </details>
       <details class="qa">
-        <summary>Quanto tempo dura o resultado?<span class="pm"></span></summary>
-        <div class="ans"><p>Em média de 4 a 6 meses. Varia conforme o metabolismo e a força da musculatura de cada pessoa. O efeito começa a aparecer entre o 3º e o 7º dia e se assenta por volta do 15º.</p></div>
+        <summary>Quanto tempo dura?<span class="pm"></span></summary>
+        <div class="ans"><p>Em média de 4 a 6 meses. Começa a aparecer entre o 3º e o 7º dia e assenta por volta do 15º.</p></div>
       </details>
       <details class="qa">
         <summary>Vou ficar com o rosto travado?<span class="pm"></span></summary>
-        <div class="ans"><p>Não. As 50 UI são distribuídas conforme a sua musculatura, não em dose padrão igual para todo mundo. O objetivo é suavizar a marca, mantendo sua expressão natural.</p></div>
+        <div class="ans"><p>Não. As 50 UI são distribuídas conforme a sua musculatura, não em dose padrão. O objetivo é suavizar a marca mantendo sua expressão.</p></div>
       </details>
       <details class="qa">
         <summary>Posso parcelar?<span class="pm"></span></summary>
         <div class="ans"><p>Sim. No cartão o valor é R$ 599, parcelado. À vista no Pix, R$ 499.</p></div>
       </details>
       <details class="qa">
-        <summary>Preciso vir antes para uma avaliação?<span class="pm"></span></summary>
-        <div class="ans"><p>Não. A avaliação e a aplicação acontecem no mesmo dia — você vem uma vez só. A Dra. avalia sua musculatura, define a distribuição e aplica na sequência.</p></div>
-      </details>
-      <details class="qa">
-        <summary>É o mesmo Botox que fazem por R$ 400 por aí?<span class="pm"></span></summary>
-        <div class="ans"><p>Não. Trabalhamos com Dysport original e a caixa lacrada é aberta na sua frente, sem diluição. Toxina diluída custa menos porque rende mais aplicações — e dura menos no seu rosto.</p></div>
+        <summary>Preciso vir antes para avaliar?<span class="pm"></span></summary>
+        <div class="ans"><p>Não. Avaliação e aplicação são no mesmo dia — você vem uma vez só.</p></div>
       </details>
     </div>
-
-    
   </div>
 </section>
 
