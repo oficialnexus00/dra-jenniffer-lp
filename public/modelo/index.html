@@ -51,16 +51,30 @@ a{color:inherit}
 
 /* Hero */
 .hero{padding:44px 0 8px}
-.hero-grid{display:grid;gap:26px}
-.hero-copy{display:contents}
-@media(min-width:820px){
-  .hero-grid{grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
-  .hero-copy{display:block}
+.hero{position:relative;overflow:hidden}
+/* o topo usa container mais largo que o resto da página, para o retrato
+   sangrar à direita sem invadir a coluna de texto */
+.hero > .wrap{max-width:1180px}
+.hero-grid{position:relative;z-index:2}
+.hero-copy{max-width:540px}
+@media(min-width:1100px){.hero-copy{max-width:580px}}
+
+/* Retrato sangrando no fundo, com a mesma máscara da página institucional */
+.hero-foto{position:absolute;top:0;right:0;bottom:0;width:47%;z-index:1;margin:0;
+  background-size:cover;background-position:top center;background-repeat:no-repeat;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 52%),linear-gradient(to bottom,transparent 0,#000 12%,#000 82%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+  mask-image:linear-gradient(to right,transparent 0,#000 52%),linear-gradient(to bottom,transparent 0,#000 12%,#000 82%,transparent 100%)}
+.hero-foto img{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+@media(max-width:900px){
+  .hero{padding-bottom:0}
+  .hero-foto{position:relative;width:112%;margin-left:-6%;height:360px;order:3;
+    -webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent);
+    mask-image:linear-gradient(to bottom,#000 62%,transparent)}
+  .hero-grid{display:flex;flex-direction:column}
+  .hero-copy{max-width:100%}
 }
-.hero-foto{margin:0;order:3}
-.hero-foto img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line);
-  box-shadow:var(--shadow)}
-@media(max-width:819px){.hero-foto{max-width:340px;margin:4px auto 0}}
 .hero h1{font-size:clamp(34px,8vw,52px);line-height:1.04;margin-top:18px;letter-spacing:-.01em}
 .hero h1 em{font-style:italic;color:var(--gold-deep)}
 .hero .lead{font-size:18px;color:var(--espresso-soft);margin:20px 0 0;max-width:32em}
@@ -93,6 +107,23 @@ a{color:inherit}
   background:var(--gold-deep);color:var(--ivory);font-family:var(--sans);font-size:13px;font-weight:600;
   display:flex;align-items:center;justify-content:center;margin-top:1px}
 .filtro b{font-weight:600}
+
+/* Marquee de marcas */
+.marquee-band{background:var(--sand);border-top:1px solid var(--line-soft);
+  border-bottom:1px solid var(--line-soft);padding:26px 0}
+.marquee-label{text-align:center;margin:0 0 16px;font-size:10.5px;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.marquee{overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee-scroll 34s linear infinite}
+.marquee-band:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:.06em;
+  color:var(--gold-deep);opacity:.62;padding:0 38px;white-space:nowrap}
+@keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none;justify-content:center;flex-wrap:wrap;gap:14px}
+}
 
 /* Bandas */
 .band{padding:44px 0}
@@ -259,6 +290,8 @@ form{margin-top:30px;display:grid;gap:20px}
 .submit:hover{background:#1a9149}
 .submit:disabled{opacity:.65;cursor:default}
 .submit svg{width:21px;height:21px;fill:#fff;flex:none}
+.trust-line{margin:2px 0 0;text-align:center;font-size:13px;line-height:1.5;
+  color:rgba(246,241,232,.6)}
 .form-foot{margin-top:16px;font-size:13px;color:rgba(246,241,232,.55);text-align:center;line-height:1.5}
 
 /* Autoridade */
@@ -323,10 +356,15 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     </div>
     </div>
 
-    <figure class="hero-foto">
-      <img src="dra-hero.jpg" alt="Dra. Jenniffer Miotto" width="720" height="900" />
+    <figure class="hero-foto" style="background-image:url('dra-hero.webp')" role="img" aria-label="Dra. Jenniffer Miotto">
+      <img src="dra-hero.webp" alt="" width="720" height="900" aria-hidden="true" />
     </figure>
   </div>
+</section>
+
+<section class="marquee-band">
+  <p class="marquee-label">Trabalhamos com as principais marcas do mercado</p>
+  <div class="marquee"><div class="marquee-track"><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span><span>Rennova</span><span>Evofill</span><span>Sofiderm</span><span>Radiesse</span><span>Sculptra</span><span>Ellansé</span><span>Allergan</span><span>Galderma</span></div></div>
 </section>
 
 <section class="band alt">
@@ -343,17 +381,17 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
       <div class="car-track" id="carTrack">
         <div class="car-slide">
           <figure class="ba" style="margin:0">
-            <img src="antes-depois-1.jpg" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <img src="antes-depois-1.webp" width="1024" height="1280" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-1.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
-            <img src="antes-depois-2.jpg" loading="lazy" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <img src="antes-depois-2.webp" width="900" height="1600" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-2.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
         </div>
         <div class="car-slide">
           <figure class="ba" style="margin:0">
-            <img src="antes-depois-3.jpg" loading="lazy" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
+            <img src="antes-depois-3.webp" width="900" height="1600" loading="lazy" onerror="if(this.dataset.f){this.closest('.car-slide').remove()}else{this.dataset.f=1;this.src='antes-depois-3.jpg'}" alt="Antes e depois de paciente — toxina botulínica no terço superior" onerror="this.closest('.car-slide').remove()" />
           </figure>
         </div>
       </div>
@@ -406,7 +444,7 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
     </div>
 
     <div class="quem">
-      <img src="dra.jpg" alt="Dra. Jenniffer Miotto, biomédica esteta" width="760" height="949" loading="lazy" />
+      <img src="dra.webp" alt="Dra. Jenniffer Miotto, biomédica esteta" width="760" height="949" loading="lazy" />
       <div class="quem-txt">
         <span class="quem-kicker">Quem vai te atender</span>
         <h3>Dra. Jenniffer Miotto</h3>
@@ -499,9 +537,11 @@ footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;al
         <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
       </div>
 
+      <p class="trust-line">Dysport original · caixa lacrada aberta na sua frente · CRBM 875/PR</p>
+
       <button type="submit" class="submit" id="btn">
         <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.23-8.24 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43-.14 0-.31-.01-.47-.01-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.13.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28"/></svg>
-        <span id="btnTxt">Enviar candidatura</span>
+        <span id="btnTxt">Quero minha vaga</span>
       </button>
       <p class="form-foot">Você será direcionada ao WhatsApp da clínica para concluir.</p>
     </form>
