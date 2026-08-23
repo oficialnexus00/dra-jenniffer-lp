@@ -1,0 +1,49 @@
+name: Deploy
+
+# Publica o site a cada push na main. O GitHub Pages deste repositório
+# serve a partir da branch gh-pages, então o job reescreve essa branch
+# com o conteúdo de dist/.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Conferir que o CNAME sobreviveu ao build
+        run: test -f dist/CNAME || (echo "dist/CNAME ausente — o domínio próprio cairia" && exit 1)
+
+      - name: Publicar em gh-pages
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Deploy de ${GITHUB_SHA::7}"
+          git push -qf "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages
+          echo "Publicado: $(git rev-parse --short HEAD)"
