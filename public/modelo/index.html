@@ -890,9 +890,11 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 
     // Traduz as queixas nos procedimentos e soma. "Tudo isso" nao calcula:
     // combo grande a Aurora fecha na conversa.
-    function precoLinha(queixas, aut) {
+    // Uma fonte so para a mensagem do WhatsApp e para o payload do CRM \u2014
+    // se os dois calculassem separado, um dia divergiriam.
+    function orcamento(queixas, aut) {
       if (queixas.indexOf("Tudo isso") !== -1) {
-        return "Quero combinar mais de um \u2014 me passa o valor?";
+        return { combo: true, itens: [], total: null };
       }
       var vistos = {}, itens = [], total = 0;
       for (var i = 0; i < queixas.length; i++) {
@@ -900,15 +902,24 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
         if (!t || vistos[t.proc]) continue;
         vistos[t.proc] = 1;
         var v = aut ? t.modelo : t.cheio;
-        itens.push(t.proc + " \u2014 R$ " + v.toLocaleString("pt-BR"));
+        itens.push({ procedimento: t.proc, valor: v });
         total += v;
       }
-      if (!itens.length) return null;
-      var txt = "*O que eu quero:* " + itens.join(" + ");
-      if (itens.length > 1) txt += "\n*Total:* R$ " + total.toLocaleString("pt-BR");
-      else if (aut && total === 499) txt += " no Pix (R$ 599 no cart\u00e3o)";
+      return { combo: false, itens: itens, total: itens.length ? total : null };
+    }
+
+    function precoLinha(orc, aut) {
+      if (orc.combo) return "Quero combinar mais de um \u2014 me passa o valor?";
+      if (!orc.itens.length) return null;
+      var txt = "*O que eu quero:* " + orc.itens.map(function (i) {
+        return i.procedimento + " \u2014 R$ " + i.valor.toLocaleString("pt-BR");
+      }).join(" + ");
+      if (orc.itens.length > 1) txt += "\n*Total:* R$ " + orc.total.toLocaleString("pt-BR");
+      else if (aut && orc.total === 499) txt += " no Pix (R$ 599 no cart\u00e3o)";
       return txt;
     }
+
+    var orc = orcamento(queixa, autoriza);
 
     var linhas = [
       autoriza
@@ -922,21 +933,43 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       autoriza
         ? "*Autorizo* foto e vídeo do antes e depois."
         : "*Não autorizo* foto e vídeo — quero saber o valor normal.",
-      precoLinha(queixa, autoriza)
+      precoLinha(orc, autoriza)
     ].filter(function (l) { return l !== null; });
 
     var url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(linhas.join("\n"));
 
+    /* Envia a candidatura para o CRM. Sai por sendBeacon, que o navegador
+       entrega mesmo depois da pagina trocar para o WhatsApp. Nao existe chave
+       aqui de proposito: a pagina e publica, entao o destino tem que ser um
+       endpoint que aceita POST anonimo (n8n) e guarda o segredo do lado dele. */
     if (CONFIG.webhook) {
       try {
+        var p = new URLSearchParams(location.search);
         var payload = JSON.stringify({
-          nome: nome, whatsapp: tel, cidade: cidade, queixa: queixa,
-          autoriza_imagem: autoriza, origem: location.search || "direto"
+          origem_funil: "lp-paciente-modelo",
+          nome: nome,
+          whatsapp: tel,
+          cidade: cidade,
+          queixa: queixa,
+          autoriza_imagem: autoriza,
+          procedimentos: orc.itens,          // [{ procedimento, valor }]
+          total: orc.total,                  // null quando escolheu "Tudo isso"
+          combo_aberto: orc.combo,           // true = valor a combinar na conversa
+          tabela_preco: autoriza ? "modelo" : "cheio",
+          utm_source: p.get("utm_source"),
+          utm_medium: p.get("utm_medium"),
+          utm_campaign: p.get("utm_campaign"),
+          utm_content: p.get("utm_content"),
+          pagina: location.href,
+          enviado_em: new Date().toISOString()
         });
         if (navigator.sendBeacon) {
           navigator.sendBeacon(CONFIG.webhook, new Blob([payload], { type: "application/json" }));
         } else {
-          fetch(CONFIG.webhook, { method: "POST", mode: "no-cors", body: payload });
+          fetch(CONFIG.webhook, {
+            method: "POST", mode: "no-cors", keepalive: true,
+            headers: { "Content-Type": "application/json" }, body: payload
+          });
         }
       } catch (err) { /* nunca impedir o WhatsApp */ }
     }
