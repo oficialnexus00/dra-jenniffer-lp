@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Paciente Modelo — Botox Dysport R$ 499 | Dra. Jenniffer Miotto</title>
-<meta name="description" content="Seleção de pacientes modelo em setembro. Botox Dysport original por R$ 499 no Pix. Balneário Camboriú, Itajaí e Itapema. Vagas limitadas." />
+<meta name="description" content="Seleção de pacientes modelo até sexta, 28 de agosto. Botox Dysport original por R$ 499 no Pix. Balneário Camboriú, Itajaí e Itapema. Vagas limitadas." />
 <meta name="robots" content="noindex" />
 <meta property="og:title" content="Paciente Modelo — Botox Dysport R$ 499 | Dra. Jenniffer Miotto" />
 <meta property="og:description" content="Dysport original, caixa lacrada aberta na sua frente. Vagas limitadas em BC, Itajaí e Itapema." />
@@ -180,6 +180,20 @@ border-radius:10px;background:rgba(198,160,94,.09);font-size:13.5px;color:#e8ded
 @media(min-width:701px){.car.multi .car-hint{display:none}}
 
 .ba-note{color:var(--muted);font-size:13.5px;margin-top:18px;line-height:1.55;text-align:center}
+
+/* Instagram — abre em aba nova de propósito: a candidatura não pode
+   perder a página no meio do caminho */
+.ig-mais{margin:18px 0 0;text-align:center}
+.ig-mais a{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;
+  color:var(--gold-deep);text-decoration:none;padding-bottom:3px;
+  border-bottom:1px solid rgba(180,138,74,.38);transition:border-color .2s}
+.ig-mais a:hover{border-bottom-color:var(--gold-deep)}
+.ig-mais a:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:3px}
+.ig-mais svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.9}
+footer .fr a{color:rgba(246,241,232,.8);text-decoration:none;
+  border-bottom:1px solid rgba(246,241,232,.28);padding-bottom:2px}
+footer .fr a:hover{color:var(--ivory);border-bottom-color:rgba(246,241,232,.6)}
+footer .fr a:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:2px}
 
 @media(prefers-reduced-motion:reduce){
   .car-track{scroll-behavior:auto}
@@ -357,16 +371,16 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 <header class="top">
   <div class="wrap">
     <div class="brand">Dra. Jenniffer Miotto<span>Biomédica Esteta</span></div>
-    <div class="vagas-pill" id="pillVagas">7 vagas · setembro</div>
+    <div class="vagas-pill" id="pillVagas">4 vagas · só até sexta</div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-    <span class="eyebrow">Seleção de Setembro · vagas limitadas</span>
+    <span class="eyebrow">Encerra sexta, 28 · vagas limitadas</span>
     <h1>Se você sempre teve vontade de fazer um <em>procedimento estético</em>, esse é o seu momento</h1>
-    <p class="lead">Estou selecionando algumas <b>pacientes modelo</b> para setembro. As vagas saem por um valor que eu não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
+    <p class="lead">Estou selecionando algumas <b>pacientes modelo</b> e atendo todas <b>até sexta, 28 de agosto</b>. As vagas saem por um valor que eu não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
 
     <div class="price-card">
       <div class="itens">Botox Dysport</div>
@@ -379,7 +393,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       </div>
       <div class="price-alt">ou <b>R$ 599</b> no cartão, parcelado</div>
       <div class="outros">
-        <div class="outros-t">Também na seleção deste mês</div>
+        <div class="outros-t">Também na seleção desta semana</div>
         <div class="proc">
           <div class="proc-l"><b>Olheira</b><span>aquele rosto cansado que não sai nem dormindo bem</span></div>
           <div class="proc-v">R$ 697</div>
@@ -455,6 +469,13 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
     </div>
 
     <p class="ba-note">Imagens publicadas com autorização das pacientes. Resultados podem variar de pessoa para pessoa — a Dra. avalia o seu caso na hora da aplicação.</p>
+
+    <p class="ig-mais">
+      <a href="https://instagram.com/drajenniffermiotto" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Mais casos no @drajenniffermiotto
+      </a>
+    </p>
   </div>
 </section>
 
@@ -566,7 +587,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
         <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
       </div>
 
-      <p class="form-scarcity">Restam <b>7 vagas</b> de paciente modelo nesta seleção. Eu escolho os casos — enviar não garante a vaga.</p>
+      <p class="form-scarcity" id="escassez">Restam <b>4 vagas</b> de paciente modelo, todas atendidas <b>até sexta, 28 de agosto</b>. Eu escolho os casos — enviar não garante a vaga.</p>
 
       <p class="trust-line">Dysport original · caixa lacrada aberta na sua frente · CRBM 875/PR</p>
 
@@ -615,7 +636,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
   <div class="wrap">
     <div class="fr">
       <span>Dra. Jenniffer Miotto · Biomédica Esteta · CRBM 875/PR</span>
-      <span>BC · Itajaí · Itapema</span>
+      <span>BC · Itajaí · Itapema · <a href="https://instagram.com/drajenniffermiotto" target="_blank" rel="noopener noreferrer">@drajenniffermiotto</a></span>
     </div>
     <p class="legal">
       Resultados podem variar de pessoa para pessoa. Todos os procedimentos são precedidos de avaliação individual, realizada no mesmo atendimento,
@@ -631,8 +652,9 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
   /* ====== CONFIGURAÇÃO — edite só aqui ====== */
   var CONFIG = {
     whatsapp: "5548991075125",   // Aurora
-    vagas: 7,
-    prazo: "setembro",
+    vagas: 4,
+    prazo: "só até sexta",
+    prazoLongo: "até sexta, 28 de agosto",
     precoPix: "R$ 499",
     precoCartao: "R$ 599",
     // queixa -> procedimento e valor. Tem que bater com a tabela da Aurora no GPTMaker.
@@ -651,6 +673,14 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 
   var pill = document.getElementById("pillVagas");
   if (pill) pill.textContent = CONFIG.vagas + " vagas · " + CONFIG.prazo;
+
+  /* O aviso acima do formulário repetia o número de vagas na mão. Passa a sair
+     do CONFIG também, senão mudar a contagem num lugar deixa o outro mentindo. */
+  var esc = document.getElementById("escassez");
+  if (esc) {
+    esc.innerHTML = "Restam <b>" + CONFIG.vagas + " vagas</b> de paciente modelo, todas atendidas <b>" +
+      CONFIG.prazoLongo + "</b>. Eu escolho os casos — enviar não garante a vaga.";
+  }
 
   /* ---------- Pixel: nunca pode quebrar a página ---------- */
   function px(evento, dados) {
@@ -890,9 +920,11 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 
     // Traduz as queixas nos procedimentos e soma. "Tudo isso" nao calcula:
     // combo grande a Aurora fecha na conversa.
-    function precoLinha(queixas, aut) {
+    // Uma fonte so para a mensagem do WhatsApp e para o payload do CRM \u2014
+    // se os dois calculassem separado, um dia divergiriam.
+    function orcamento(queixas, aut) {
       if (queixas.indexOf("Tudo isso") !== -1) {
-        return "Quero combinar mais de um \u2014 me passa o valor?";
+        return { combo: true, itens: [], total: null };
       }
       var vistos = {}, itens = [], total = 0;
       for (var i = 0; i < queixas.length; i++) {
@@ -900,15 +932,24 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
         if (!t || vistos[t.proc]) continue;
         vistos[t.proc] = 1;
         var v = aut ? t.modelo : t.cheio;
-        itens.push(t.proc + " \u2014 R$ " + v.toLocaleString("pt-BR"));
+        itens.push({ procedimento: t.proc, valor: v });
         total += v;
       }
-      if (!itens.length) return null;
-      var txt = "*O que eu quero:* " + itens.join(" + ");
-      if (itens.length > 1) txt += "\n*Total:* R$ " + total.toLocaleString("pt-BR");
-      else if (aut && total === 499) txt += " no Pix (R$ 599 no cart\u00e3o)";
+      return { combo: false, itens: itens, total: itens.length ? total : null };
+    }
+
+    function precoLinha(orc, aut) {
+      if (orc.combo) return "Quero combinar mais de um \u2014 me passa o valor?";
+      if (!orc.itens.length) return null;
+      var txt = "*O que eu quero:* " + orc.itens.map(function (i) {
+        return i.procedimento + " \u2014 R$ " + i.valor.toLocaleString("pt-BR");
+      }).join(" + ");
+      if (orc.itens.length > 1) txt += "\n*Total:* R$ " + orc.total.toLocaleString("pt-BR");
+      else if (aut && orc.total === 499) txt += " no Pix (R$ 599 no cart\u00e3o)";
       return txt;
     }
+
+    var orc = orcamento(queixa, autoriza);
 
     var linhas = [
       autoriza
@@ -922,21 +963,48 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
       autoriza
         ? "*Autorizo* foto e vídeo do antes e depois."
         : "*Não autorizo* foto e vídeo — quero saber o valor normal.",
-      precoLinha(queixa, autoriza)
+      precoLinha(orc, autoriza)
     ].filter(function (l) { return l !== null; });
 
     var url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(linhas.join("\n"));
 
+    /* Envia a candidatura para o CRM. Sai por sendBeacon, que o navegador
+       entrega mesmo depois da pagina trocar para o WhatsApp. Nao existe chave
+       aqui de proposito: a pagina e publica, entao o destino tem que ser um
+       endpoint que aceita POST anonimo (n8n) e guarda o segredo do lado dele.
+
+       O corpo e JSON mas vai declarado como text/plain de proposito. Com
+       application/json a requisicao deixa de ser simples e o navegador exige
+       preflight CORS — que o sendBeacon nao negocia, entao ele descartaria o
+       envio sem erro nenhum no console. Quem recebe faz JSON.parse do corpo. */
     if (CONFIG.webhook) {
       try {
+        var p = new URLSearchParams(location.search);
         var payload = JSON.stringify({
-          nome: nome, whatsapp: tel, cidade: cidade, queixa: queixa,
-          autoriza_imagem: autoriza, origem: location.search || "direto"
+          origem_funil: "lp-paciente-modelo",
+          nome: nome,
+          whatsapp: tel,
+          cidade: cidade,
+          queixa: queixa,
+          autoriza_imagem: autoriza,
+          procedimentos: orc.itens,          // [{ procedimento, valor }]
+          total: orc.total,                  // null quando escolheu "Tudo isso"
+          combo_aberto: orc.combo,           // true = valor a combinar na conversa
+          tabela_preco: autoriza ? "modelo" : "cheio",
+          utm_source: p.get("utm_source"),
+          utm_medium: p.get("utm_medium"),
+          utm_campaign: p.get("utm_campaign"),
+          utm_content: p.get("utm_content"),
+          pagina: location.href,
+          enviado_em: new Date().toISOString()
         });
         if (navigator.sendBeacon) {
-          navigator.sendBeacon(CONFIG.webhook, new Blob([payload], { type: "application/json" }));
+          navigator.sendBeacon(CONFIG.webhook, new Blob([payload], { type: "text/plain;charset=UTF-8" }));
         } else {
-          fetch(CONFIG.webhook, { method: "POST", mode: "no-cors", body: payload });
+          fetch(CONFIG.webhook, {
+            method: "POST", mode: "no-cors", keepalive: true,
+            headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: payload
+          });
         }
       } catch (err) { /* nunca impedir o WhatsApp */ }
     }
