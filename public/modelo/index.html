@@ -941,7 +941,12 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
     /* Envia a candidatura para o CRM. Sai por sendBeacon, que o navegador
        entrega mesmo depois da pagina trocar para o WhatsApp. Nao existe chave
        aqui de proposito: a pagina e publica, entao o destino tem que ser um
-       endpoint que aceita POST anonimo (n8n) e guarda o segredo do lado dele. */
+       endpoint que aceita POST anonimo (n8n) e guarda o segredo do lado dele.
+
+       O corpo e JSON mas vai declarado como text/plain de proposito. Com
+       application/json a requisicao deixa de ser simples e o navegador exige
+       preflight CORS — que o sendBeacon nao negocia, entao ele descartaria o
+       envio sem erro nenhum no console. Quem recebe faz JSON.parse do corpo. */
     if (CONFIG.webhook) {
       try {
         var p = new URLSearchParams(location.search);
@@ -964,11 +969,11 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
           enviado_em: new Date().toISOString()
         });
         if (navigator.sendBeacon) {
-          navigator.sendBeacon(CONFIG.webhook, new Blob([payload], { type: "application/json" }));
+          navigator.sendBeacon(CONFIG.webhook, new Blob([payload], { type: "text/plain;charset=UTF-8" }));
         } else {
           fetch(CONFIG.webhook, {
             method: "POST", mode: "no-cors", keepalive: true,
-            headers: { "Content-Type": "application/json" }, body: payload
+            headers: { "Content-Type": "text/plain;charset=UTF-8" }, body: payload
           });
         }
       } catch (err) { /* nunca impedir o WhatsApp */ }
