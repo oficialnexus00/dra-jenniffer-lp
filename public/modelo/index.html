@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Paciente Modelo — Botox Dysport R$ 499 | Dra. Jenniffer Miotto</title>
-<meta name="description" content="Seleção de pacientes modelo em setembro. Botox Dysport original por R$ 499 no Pix. Balneário Camboriú, Itajaí e Itapema. Vagas limitadas." />
+<meta name="description" content="Seleção de pacientes modelo até 31 de agosto. Botox Dysport original por R$ 499 no Pix. Balneário Camboriú, Itajaí e Itapema. Vagas limitadas." />
 <meta name="robots" content="noindex" />
 <meta property="og:title" content="Paciente Modelo — Botox Dysport R$ 499 | Dra. Jenniffer Miotto" />
 <meta property="og:description" content="Dysport original, caixa lacrada aberta na sua frente. Vagas limitadas em BC, Itajaí e Itapema." />
@@ -357,16 +357,16 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 <header class="top">
   <div class="wrap">
     <div class="brand">Dra. Jenniffer Miotto<span>Biomédica Esteta</span></div>
-    <div class="vagas-pill" id="pillVagas">7 vagas · setembro</div>
+    <div class="vagas-pill" id="pillVagas">7 vagas · até 31 de agosto</div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-    <span class="eyebrow">Seleção de Setembro · vagas limitadas</span>
+    <span class="eyebrow">Últimos dias de agosto · vagas limitadas</span>
     <h1>Se você sempre teve vontade de fazer um <em>procedimento estético</em>, esse é o seu momento</h1>
-    <p class="lead">Estou selecionando algumas <b>pacientes modelo</b> para setembro. As vagas saem por um valor que eu não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
+    <p class="lead">Estou selecionando algumas <b>pacientes modelo</b> e atendo todas <b>até 31 de agosto</b>. As vagas saem por um valor que eu não pratico no restante do ano — em troca da autorização para usar as imagens do seu antes e depois.</p>
 
     <div class="price-card">
       <div class="itens">Botox Dysport</div>
@@ -566,7 +566,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
         <span class="err" id="errZap">Digite um WhatsApp válido com DDD.</span>
       </div>
 
-      <p class="form-scarcity">Restam <b>7 vagas</b> de paciente modelo nesta seleção. Eu escolho os casos — enviar não garante a vaga.</p>
+      <p class="form-scarcity" id="escassez">Restam <b>7 vagas</b> de paciente modelo, todas atendidas <b>até 31 de agosto</b>. Eu escolho os casos — enviar não garante a vaga.</p>
 
       <p class="trust-line">Dysport original · caixa lacrada aberta na sua frente · CRBM 875/PR</p>
 
@@ -632,7 +632,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
   var CONFIG = {
     whatsapp: "5548991075125",   // Aurora
     vagas: 7,
-    prazo: "setembro",
+    prazo: "até 31 de agosto",
     precoPix: "R$ 499",
     precoCartao: "R$ 599",
     // queixa -> procedimento e valor. Tem que bater com a tabela da Aurora no GPTMaker.
@@ -651,6 +651,14 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
 
   var pill = document.getElementById("pillVagas");
   if (pill) pill.textContent = CONFIG.vagas + " vagas · " + CONFIG.prazo;
+
+  /* O aviso acima do formulário repetia o número de vagas na mão. Passa a sair
+     do CONFIG também, senão mudar a contagem num lugar deixa o outro mentindo. */
+  var esc = document.getElementById("escassez");
+  if (esc) {
+    esc.innerHTML = "Restam <b>" + CONFIG.vagas + " vagas</b> de paciente modelo, todas atendidas <b>" +
+      CONFIG.prazo + "</b>. Eu escolho os casos — enviar não garante a vaga.";
+  }
 
   /* ---------- Pixel: nunca pode quebrar a página ---------- */
   function px(evento, dados) {
