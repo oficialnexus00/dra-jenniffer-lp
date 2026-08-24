@@ -181,6 +181,20 @@ border-radius:10px;background:rgba(198,160,94,.09);font-size:13.5px;color:#e8ded
 
 .ba-note{color:var(--muted);font-size:13.5px;margin-top:18px;line-height:1.55;text-align:center}
 
+/* Instagram — abre em aba nova de propósito: a candidatura não pode
+   perder a página no meio do caminho */
+.ig-mais{margin:18px 0 0;text-align:center}
+.ig-mais a{display:inline-flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;
+  color:var(--gold-deep);text-decoration:none;padding-bottom:3px;
+  border-bottom:1px solid rgba(180,138,74,.38);transition:border-color .2s}
+.ig-mais a:hover{border-bottom-color:var(--gold-deep)}
+.ig-mais a:focus-visible{outline:2px solid var(--gold);outline-offset:4px;border-radius:3px}
+.ig-mais svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.9}
+footer .fr a{color:rgba(246,241,232,.8);text-decoration:none;
+  border-bottom:1px solid rgba(246,241,232,.28);padding-bottom:2px}
+footer .fr a:hover{color:var(--ivory);border-bottom-color:rgba(246,241,232,.6)}
+footer .fr a:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:2px}
+
 @media(prefers-reduced-motion:reduce){
   .car-track{scroll-behavior:auto}
 }
@@ -455,6 +469,13 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
     </div>
 
     <p class="ba-note">Imagens publicadas com autorização das pacientes. Resultados podem variar de pessoa para pessoa — a Dra. avalia o seu caso na hora da aplicação.</p>
+
+    <p class="ig-mais">
+      <a href="https://instagram.com/drajenniffermiotto" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Mais casos no @drajenniffermiotto
+      </a>
+    </p>
   </div>
 </section>
 
@@ -615,7 +636,7 @@ src="https://www.facebook.com/tr?id=1032740982904115&ev=PageView&noscript=1" alt
   <div class="wrap">
     <div class="fr">
       <span>Dra. Jenniffer Miotto · Biomédica Esteta · CRBM 875/PR</span>
-      <span>BC · Itajaí · Itapema</span>
+      <span>BC · Itajaí · Itapema · <a href="https://instagram.com/drajenniffermiotto" target="_blank" rel="noopener noreferrer">@drajenniffermiotto</a></span>
     </div>
     <p class="legal">
       Resultados podem variar de pessoa para pessoa. Todos os procedimentos são precedidos de avaliação individual, realizada no mesmo atendimento,
